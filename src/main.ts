@@ -1,6 +1,9 @@
 import { Discord, Client, Command, CommandMessage, CommandNotFound } from "@typeit/discord";
 import auth from "../auth.json";
-import { cpus } from 'os';
+import { getCityOfPlayer } from './commands/city-of-player-command';
+import { notFound } from './commands/command-not-found';
+import { help } from './commands/help-command';
+import { timer } from './commands/private-timer-message';
 
 interface Infos 
 {
@@ -10,7 +13,9 @@ interface Infos
 @Discord({ prefix: "!" })
 export class DiscordApp {
     private static _client: Client;
-    private static allCommandsString: string;
+    public static _allCommandsString: string;
+    private static _worldID = 77; 
+    public static _grepolisUrl = "https://nl"+DiscordApp._worldID+".grepolis.com/data/"
 
     static start() 
     {
@@ -28,30 +33,45 @@ export class DiscordApp {
 
         commands.forEach(command => 
         {
-            commandsString += command.prefix + command.commandName + ": " + (command.description ?? "[no description found]") + "\n";
+            if(command.commandName !== "bier")
+            {
+                commandsString += command.prefix + command.commandName + ": " + (command.description ?? "[no description found]") + "\n";
+            }
         });
 
-        this.allCommandsString = commandsString;
+        this._allCommandsString = commandsString;
     }
 
     @Command("help", { description: "Weergeeft alle commands" })
     commandHelp(command: CommandMessage, client: Client)
     {
-        command.reply(DiscordApp.allCommandsString);
+        help(command, client);
     }
 
-    @Command("hello", { description: "Zegt hallo" })
+    @Command("bier", { description: "Proost!" })
     commandHello(command: CommandMessage, client: Client)
     {
-        command.reply("Hello "+ command.author.username);
+        command.reply("Ik zeg proost op "+ command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
+    }
+
+    // world data: https://us.forum.grepolis.com/index.php?threads/world-data.3226/
+    @Command("steden", { description:"Weergeeft de steden van een speler. Gebruik command: !steden {{spelernaam}}" })
+    async commandCities(command: CommandMessage, client: Client)
+    {
+        await getCityOfPlayer(command, client);
+    }
+
+    @Command("timer", {description: "Zet een timer(in minuten) en wordt iedere X minuten herinnert doormiddel van een privébericht. Gebruik command !timer {{minuten}}"})
+    async commandTimer(command: CommandMessage, client: Client)
+    {
+        await timer(command, client);
     }
 
     @CommandNotFound()
     commandNotFound(command: CommandMessage, client: Client)
     {
-        command.reply("Kon het commando "+ command.content +" niet vinden! \n" + DiscordApp.allCommandsString)
+        notFound(command, client);
     }
-
 }
 
 // Start the app
