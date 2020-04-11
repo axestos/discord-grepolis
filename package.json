@@ -1,0 +1,11 @@
+{
+    "name": "grepolis-discord-bot",
+    "version": "1.0.0",
+    "description": "A bot made for a Grepolis Discord server",
+    "author": "Kevin Willemse",
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^3.8.3"
+    }
+}
