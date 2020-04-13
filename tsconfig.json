@@ -14,6 +14,7 @@
       "es2017",
       "esnext.asynciterable"
     ],
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,

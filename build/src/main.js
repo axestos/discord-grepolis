@@ -8,27 +8,31 @@ const city_of_player_command_1 = require("./commands/city-of-player-command");
 const command_not_found_1 = require("./commands/command-not-found");
 const help_command_1 = require("./commands/help-command");
 const private_timer_message_1 = require("./commands/private-timer-message");
+const discord_events_1 = require("./classes/discord-events");
+const discord_js_1 = require("discord.js");
+const new_user_1 = require("./events/new-user");
 let DiscordApp = DiscordApp_1 = class DiscordApp {
     static start() {
         this._client = new discord_1.Client();
-        this._client.login(auth_json_1.default.bot_token, `${__dirname}/*Discord.ts` // glob string to load the classes
-        );
+        this._client.login(auth_json_1.default.bot_token, `${__dirname}/*Discord.ts`);
         this.getAllCommands();
     }
     static getAllCommands() {
         var commands = discord_1.Client.getCommands("!");
         var commandsString = "De volgende commands zijn geldig: \n";
         commands.forEach(command => {
-            var _a;
-            commandsString += command.prefix + command.commandName + ": " + ((_a = command.description) !== null && _a !== void 0 ? _a : "[no description found]") + "\n";
+            // only show commands that have a description
+            if (command.description) {
+                commandsString += command.prefix + command.commandName + ": " + command.description + "\n";
+            }
         });
         this._allCommandsString = commandsString;
     }
+    newUser(member) {
+        new_user_1.welcomeNewUser(member);
+    }
     commandHelp(command, client) {
         help_command_1.help(command, client);
-    }
-    commandHello(command, client) {
-        command.reply("Ik zeg proost op " + command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
     }
     // world data: https://us.forum.grepolis.com/index.php?threads/world-data.3226/
     async commandCities(command, client) {
@@ -40,9 +44,19 @@ let DiscordApp = DiscordApp_1 = class DiscordApp {
     commandNotFound(command, client) {
         command_not_found_1.notFound(command, client);
     }
+    /* JOKE COMMANDS */
+    commandBeer(command, client) {
+        command.reply("Ik zeg proost op " + command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
+    }
 };
 DiscordApp._worldID = 77;
 DiscordApp._grepolisUrl = "https://nl" + DiscordApp_1._worldID + ".grepolis.com/data/";
+tslib_1.__decorate([
+    discord_1.On(discord_events_1.DiscordEvent.GuildMemberAdd),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [discord_js_1.GuildMember]),
+    tslib_1.__metadata("design:returntype", void 0)
+], DiscordApp.prototype, "newUser", null);
 tslib_1.__decorate([
     discord_1.Command("help", { description: "Weergeeft alle commands" }),
     tslib_1.__metadata("design:type", Function),
@@ -50,19 +64,13 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:returntype", void 0)
 ], DiscordApp.prototype, "commandHelp", null);
 tslib_1.__decorate([
-    discord_1.Command("bier", { description: "Proost!" }),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
-    tslib_1.__metadata("design:returntype", void 0)
-], DiscordApp.prototype, "commandHello", null);
-tslib_1.__decorate([
-    discord_1.Command("steden", { description: "Weergeeft de steden van een speler. Gebruik command: !steden spelernaam" }),
+    discord_1.Command("steden", { description: "Weergeeft de steden van een speler. Gebruik command: !steden {{spelernaam}}" }),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
     tslib_1.__metadata("design:returntype", Promise)
 ], DiscordApp.prototype, "commandCities", null);
 tslib_1.__decorate([
-    discord_1.Command("timer", { description: "Zet een timer(in minuten) en wordt iedere X minuten herinnert doormiddel van een privébericht. " }),
+    discord_1.Command("timer", { description: "Zet een timer(in minuten) en wordt iedere X minuten herinnert doormiddel van een privébericht. Gebruik command !timer {{minuten}} {{reden: optioneel}}" }),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
     tslib_1.__metadata("design:returntype", Promise)
@@ -73,6 +81,12 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
     tslib_1.__metadata("design:returntype", void 0)
 ], DiscordApp.prototype, "commandNotFound", null);
+tslib_1.__decorate([
+    discord_1.Command("bier"),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
+    tslib_1.__metadata("design:returntype", void 0)
+], DiscordApp.prototype, "commandBeer", null);
 DiscordApp = DiscordApp_1 = tslib_1.__decorate([
     discord_1.Discord({ prefix: "!" })
 ], DiscordApp);

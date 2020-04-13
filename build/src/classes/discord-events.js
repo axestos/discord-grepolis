@@ -1,0 +1,55 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var DiscordEvent;
+(function (DiscordEvent) {
+    DiscordEvent["ChannelCreate"] = "channelCreate";
+    DiscordEvent["ChannelDelete"] = "channelDelete";
+    DiscordEvent["ChannelPinsUpdate"] = "channelPinsUpdate";
+    DiscordEvent["ChannelUpdate"] = "channelUpdate";
+    DiscordEvent["ClientUserGuildSettingsUpdate"] = "clientUserGuildSettingsUpdate";
+    DiscordEvent["ClientUserSettingsUpdate"] = "clientUserSettingsUpdate";
+    DiscordEvent["Debug"] = "debug";
+    DiscordEvent["Disconnect"] = "disconnect";
+    DiscordEvent["EmojiCreate"] = "emojiCreate";
+    DiscordEvent["EmojiDelete"] = "emojiDelete";
+    DiscordEvent["EmojiUpdate"] = "emojiUpdate";
+    DiscordEvent["Error"] = "error";
+    DiscordEvent["GuildBanAdd"] = "guildBanAdd";
+    DiscordEvent["GuildBanRemove"] = "guildBanRemove";
+    DiscordEvent["GuildCreate"] = "guildCreate";
+    DiscordEvent["GuildDelete"] = "guildDelete";
+    DiscordEvent["GuildMemberAdd"] = "guildMemberAdd";
+    DiscordEvent["GuildMemberAvailable"] = "guildMemberAvailable";
+    DiscordEvent["GuildMemberRemove"] = "guildMemberRemove";
+    DiscordEvent["GuildMembersChunk"] = "guildMembersChunk";
+    DiscordEvent["GuildMemberSpeaking"] = "guildMemberSpeaking";
+    DiscordEvent["GuildMemberUpdate"] = "guildMemberUpdate";
+    DiscordEvent["GuildUnavailable"] = "guildUnavailable";
+    DiscordEvent["GuildUpdate"] = "guildUpdate";
+    DiscordEvent["GuildIntegrationsUpdate"] = "guildIntegrationsUpdate";
+    DiscordEvent["Message"] = "message";
+    DiscordEvent["MessageDelete"] = "messageDelete";
+    DiscordEvent["MessageDeleteBulk"] = "messageDeleteBulk";
+    DiscordEvent["MessageReactionAdd"] = "messageReactionAdd";
+    DiscordEvent["MessageReactionRemove"] = "messageReactionRemove";
+    DiscordEvent["MessageReactionRemoveAll"] = "messageReactionRemoveAll";
+    DiscordEvent["MessageUpdate"] = "messageUpdate";
+    DiscordEvent["PresenceUpdate"] = "presenceUpdate";
+    DiscordEvent["RateLimit"] = "rateLimit";
+    DiscordEvent["Ready"] = "ready";
+    DiscordEvent["Reconnecting"] = "reconnecting";
+    DiscordEvent["Resume"] = "resume";
+    DiscordEvent["RoleCreate"] = "roleCreate";
+    DiscordEvent["RoleDelete"] = "roleDelete";
+    DiscordEvent["RoleUpdate"] = "roleUpdate";
+    DiscordEvent["TypingStart"] = "typingStart";
+    DiscordEvent["TypingStop"] = "typingStop";
+    DiscordEvent["UserNoteUpdate"] = "userNoteUpdate";
+    DiscordEvent["UserUpdate"] = "userUpdate";
+    DiscordEvent["VoiceStateUpdate"] = "voiceStateUpdate";
+    DiscordEvent["Warn"] = "warn";
+    DiscordEvent["WebhookUpdate"] = "webhookUpdate";
+})(DiscordEvent = exports.DiscordEvent //See https://github.com/OwenCalvin/discord.ts#events-and-payload
+ || (exports.DiscordEvent //See https://github.com/OwenCalvin/discord.ts#events-and-payload
+ = {}));
+//# sourceMappingURL=discord-events.js.map

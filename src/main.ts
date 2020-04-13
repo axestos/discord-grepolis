@@ -1,9 +1,12 @@
-import { Discord, Client, Command, CommandMessage, CommandNotFound } from "@typeit/discord";
+import { Discord, Client, Command, CommandMessage, CommandNotFound, On } from "@typeit/discord";
 import auth from "../auth.json";
 import { getCityOfPlayer } from './commands/city-of-player-command';
 import { notFound } from './commands/command-not-found';
 import { help } from './commands/help-command';
 import { timer } from './commands/private-timer-message';
+import { DiscordEvent } from './classes/discord-events';
+import { GuildMember } from 'discord.js';
+import { welcomeNewUser } from './events/new-user';
 
 interface Infos 
 {
@@ -22,7 +25,7 @@ export class DiscordApp {
         this._client = new Client();
         this._client.login(
             auth.bot_token,
-            `${__dirname}/*Discord.ts` // glob string to load the classes
+            `${__dirname}/*Discord.ts`
           );
         this.getAllCommands();
     }
@@ -33,25 +36,26 @@ export class DiscordApp {
 
         commands.forEach(command => 
         {
-            if(command.commandName !== "bier")
+            // only show commands that have a description
+            if(command.description)
             {
-                commandsString += command.prefix + command.commandName + ": " + (command.description ?? "[no description found]") + "\n";
+                commandsString += command.prefix + command.commandName + ": " + command.description  + "\n";
             }
         });
 
         this._allCommandsString = commandsString;
     }
 
+    @On(DiscordEvent.GuildMemberAdd)
+    newUser(member: GuildMember)
+    {
+        welcomeNewUser(member);
+    }
+
     @Command("help", { description: "Weergeeft alle commands" })
     commandHelp(command: CommandMessage, client: Client)
     {
         help(command, client);
-    }
-
-    @Command("bier", { description: "Proost!" })
-    commandHello(command: CommandMessage, client: Client)
-    {
-        command.reply("Ik zeg proost op "+ command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
     }
 
     // world data: https://us.forum.grepolis.com/index.php?threads/world-data.3226/
@@ -61,7 +65,7 @@ export class DiscordApp {
         await getCityOfPlayer(command, client);
     }
 
-    @Command("timer", {description: "Zet een timer(in minuten) en wordt iedere X minuten herinnert doormiddel van een privébericht. Gebruik command !timer {{minuten}}"})
+    @Command("timer", {description: "Zet een timer(in minuten) en wordt iedere X minuten herinnert doormiddel van een privébericht. Gebruik command !timer {{minuten}} {{reden: optioneel}}"})
     async commandTimer(command: CommandMessage, client: Client)
     {
         await timer(command, client);
@@ -71,6 +75,13 @@ export class DiscordApp {
     commandNotFound(command: CommandMessage, client: Client)
     {
         notFound(command, client);
+    }
+
+    /* JOKE COMMANDS */
+    @Command("bier")
+    commandBeer(command: CommandMessage, client: Client)
+    {
+        command.reply("Ik zeg proost op "+ command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
     }
 }
 

@@ -1,4 +1,5 @@
 import { Client, CommandMessage } from "@typeit/discord";
+import { GuildMember } from 'discord.js';
 export declare class DiscordApp {
     private static _client;
     static _allCommandsString: string;
@@ -6,9 +7,10 @@ export declare class DiscordApp {
     static _grepolisUrl: string;
     static start(): void;
     static getAllCommands(): void;
+    newUser(member: GuildMember): void;
     commandHelp(command: CommandMessage, client: Client): void;
-    commandHello(command: CommandMessage, client: Client): void;
     commandCities(command: CommandMessage, client: Client): Promise<void>;
     commandTimer(command: CommandMessage, client: Client): Promise<void>;
     commandNotFound(command: CommandMessage, client: Client): void;
+    commandBeer(command: CommandMessage, client: Client): void;
 }
