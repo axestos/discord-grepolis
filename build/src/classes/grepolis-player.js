@@ -4,7 +4,7 @@ class GrepolisPlayer {
     constructor(playerAsArray) {
         var _a;
         this.id = Number(playerAsArray[0]);
-        this.name = decodeURI((_a = playerAsArray[1]) === null || _a === void 0 ? void 0 : _a.replace(/[+]/g, " "));
+        this.name = decodeURIComponent((_a = playerAsArray[1]) === null || _a === void 0 ? void 0 : _a.replace(/[+]/g, " "));
         this.alliance_id = Number(playerAsArray[2]);
         this.points = Number(playerAsArray[3]);
         this.rank = Number(playerAsArray[4]);

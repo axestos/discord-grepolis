@@ -13,4 +13,7 @@ export declare class DiscordApp {
     commandTimer(command: CommandMessage, client: Client): Promise<void>;
     commandNotFound(command: CommandMessage, client: Client): void;
     commandBeer(command: CommandMessage, client: Client): void;
+    commandBelgium(command: CommandMessage, client: Client): void;
+    commandNetherlands(command: CommandMessage, client: Client): void;
+    commandRussia(command: CommandMessage, client: Client): void;
 }

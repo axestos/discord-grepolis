@@ -10,7 +10,7 @@ export class GrepolisPlayer
     constructor(playerAsArray: Array<string>)
     {
         this.id = Number(playerAsArray[0]);
-        this.name = decodeURI(playerAsArray[1]?.replace(/[+]/g, " "));
+        this.name = decodeURIComponent(playerAsArray[1]?.replace(/[+]/g, " "));
         this.alliance_id = Number(playerAsArray[2]);
         this.points = Number(playerAsArray[3]);
         this.rank = Number(playerAsArray[4]);

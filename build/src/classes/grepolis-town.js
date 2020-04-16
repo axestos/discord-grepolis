@@ -5,7 +5,7 @@ class GrepolisTown {
         var _a;
         this.id = Number(townAsArray[0]);
         this.player_id = Number(townAsArray[1]);
-        this.name = decodeURI((_a = townAsArray[2]) === null || _a === void 0 ? void 0 : _a.replace(/[+]/g, " "));
+        this.name = decodeURIComponent((_a = townAsArray[2]) === null || _a === void 0 ? void 0 : _a.replace(/[+]/g, " "));
         this.island_x = Number(townAsArray[3]);
         this.island_y = Number(townAsArray[4]);
         this.number_on_island = Number(townAsArray[5]);

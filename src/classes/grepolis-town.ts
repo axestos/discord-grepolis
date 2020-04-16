@@ -12,7 +12,7 @@ export class GrepolisTown
     {
         this.id = Number(townAsArray[0]);
         this.player_id = Number(townAsArray[1]);
-        this.name = decodeURI(townAsArray[2]?.replace(/[+]/g, " "));
+        this.name = decodeURIComponent(townAsArray[2]?.replace(/[+]/g, " "));
         this.island_x = Number(townAsArray[3]);
         this.island_y = Number(townAsArray[4]);
         this.number_on_island = Number(townAsArray[5]);

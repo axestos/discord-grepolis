@@ -4,7 +4,7 @@
     "description": "A bot made for a Grepolis Discord server",
     "author": "Kevin Willemse",
     "scripts": {
-        "build": "webpack --config ./src/webpack.config.js"
+        "build-run": "tsc && node build/src/main.js"
     },
     "files": [
         "*"

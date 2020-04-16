@@ -48,6 +48,15 @@ let DiscordApp = DiscordApp_1 = class DiscordApp {
     commandBeer(command, client) {
         command.reply("Ik zeg proost op " + command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
     }
+    commandBelgium(command, client) {
+        command.reply("https://youtu.be/MTVnMO6cRfg?t=232");
+    }
+    commandNetherlands(command, client) {
+        command.reply("https://youtu.be/l18j-vrVMCA");
+    }
+    commandRussia(command, client) {
+        command.reply("https://youtu.be/BVWfqOSdzs4");
+    }
 };
 DiscordApp._worldID = 77;
 DiscordApp._grepolisUrl = "https://nl" + DiscordApp_1._worldID + ".grepolis.com/data/";
@@ -87,6 +96,24 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
     tslib_1.__metadata("design:returntype", void 0)
 ], DiscordApp.prototype, "commandBeer", null);
+tslib_1.__decorate([
+    discord_1.Command("belgie"),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
+    tslib_1.__metadata("design:returntype", void 0)
+], DiscordApp.prototype, "commandBelgium", null);
+tslib_1.__decorate([
+    discord_1.Command("nederland"),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
+    tslib_1.__metadata("design:returntype", void 0)
+], DiscordApp.prototype, "commandNetherlands", null);
+tslib_1.__decorate([
+    discord_1.Command("rusland"),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, discord_1.Client]),
+    tslib_1.__metadata("design:returntype", void 0)
+], DiscordApp.prototype, "commandRussia", null);
 DiscordApp = DiscordApp_1 = tslib_1.__decorate([
     discord_1.Discord({ prefix: "!" })
 ], DiscordApp);

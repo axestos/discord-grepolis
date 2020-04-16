@@ -83,6 +83,21 @@ export class DiscordApp {
     {
         command.reply("Ik zeg proost op "+ command.author.username + ", en vergeet niet: Probleem'n? Poar neem'n!");
     }
+
+    @Command("belgie")
+    commandBelgium(command: CommandMessage, client: Client){
+        command.reply("https://youtu.be/MTVnMO6cRfg?t=232");
+    }
+    
+    @Command("nederland")
+    commandNetherlands(command: CommandMessage, client: Client){
+        command.reply("https://youtu.be/l18j-vrVMCA");
+    }
+
+    @Command("rusland")
+    commandRussia(command: CommandMessage, client: Client){
+        command.reply("https://youtu.be/BVWfqOSdzs4");
+    }
 }
 
 // Start the app
